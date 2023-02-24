@@ -8,14 +8,14 @@
 <script>
 // 按需引入 开始
 import * as echarts from 'echarts/core';
-import {LineChart, BarChart} from 'echarts/charts';
+import {LineChart, BarChart, GraphChart} from 'echarts/charts';
 import {TitleComponent,TooltipComponent,GridComponent, DatasetComponent, TransformComponent, LegendComponent } from 'echarts/components';
 // // 标签自动布局，全局过渡动画等特性
 import {LabelLayout,UniversalTransition} from 'echarts/features';
 // 引入 Canvas 渲染器，注意引入 CanvasRenderer 是必须的一步
 import {CanvasRenderer} from 'echarts/renderers';
 
-import {mdata} from './mockdata.js'
+import {mdata, mlinks} from './mockdata.js'
 
 // 注册必须的组件
 echarts.use([
@@ -27,6 +27,7 @@ echarts.use([
     TransformComponent,
     LineChart,
     BarChart,
+	GraphChart,
     LabelLayout,
     UniversalTransition,
     CanvasRenderer
@@ -37,64 +38,31 @@ export default {
     data() {
         return {
             option: {
-                tooltip: {
-                    trigger: 'axis',
-                    axisPointer: {
-                        type: 'shadow' 
-                    },
-                    confine: true
-                },
-                legend: {
-                    data: ['热度']
-                },
-                grid: {
-                    left: 20,
-                    right: 20,
-                    bottom: 15,
-                    top: 40,
-                    containLabel: true
-                },
-                xAxis: [
-                    {
-                        type: 'value',
-                        axisLine: {
-                            lineStyle: {
-                                color: '#999999'
-                            }
-                        },
-                        axisLabel: {
-                            color: '#666666'
-                        }
-                    }
-                ],
-                yAxis: [
-                    {
-                        type: 'category',
-                        axisTick: { show: false },
-                        data: ['汽车之家', '今日头条', '百度贴吧', '一点资讯', '微信', '微博', '知乎'],
-                        axisLine: {
-                            lineStyle: {
-                                color: '#999999'
-                            }
-                        },
-                        axisLabel: {
-                            color: '#666666'
-                        }
-                    }
-                ],
-				// label: {
-				// 	normal: {
-				// 		show: true,
-				// 		position: 'inside'
-				// 	}
-				// },
-                series: [
-                    {
-                        name: '热度',
-                        type: 'bar',
-                        data: mdata,
-                    }
-                ]
+				title: {
+				    text: 'Basic Graph'
+				  },
+				  tooltip: {},
+				  animationDurationUpdate: 1500,
+				  animationEasingUpdate: 'quinticInOut',
+				  series: [
+				    {
+				      type: 'graph',
+				      layout: 'none',
+				      symbolSize: 50,
+				      roam: true,
+				      label: {
+				        show: true
+				      },
+				      edgeSymbol: ['circle', 'arrow'],
+				      edgeSymbolSize: [4, 10],
+				      edgeLabel: {
+				        fontSize: 20
+				      },
+				      data: mdata,
+					  links: mlinks,
+					  },
+					  ]
+            
             },
         };
     },
