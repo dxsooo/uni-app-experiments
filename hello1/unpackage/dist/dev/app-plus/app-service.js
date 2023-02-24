@@ -41479,6 +41479,7 @@ if (uni.restoreGlobal) {
   function install(registers) {
     registers.registerPainter("canvas", CanvasPainter$1);
   }
+  const mdata = [300, 270, 340, 344, 300, 320, 310];
   use([
     install$3,
     install$6,
@@ -41504,7 +41505,7 @@ if (uni.restoreGlobal) {
             confine: true
           },
           legend: {
-            data: ["热度", "正面", "负面"]
+            data: ["热度"]
           },
           grid: {
             left: 20,
@@ -41541,40 +41542,17 @@ if (uni.restoreGlobal) {
               }
             }
           ],
+          // label: {
+          // 	normal: {
+          // 		show: true,
+          // 		position: 'inside'
+          // 	}
+          // },
           series: [
             {
               name: "热度",
               type: "bar",
-              label: {
-                normal: {
-                  show: true,
-                  position: "inside"
-                }
-              },
-              data: [300, 270, 340, 344, 300, 320, 310]
-            },
-            {
-              name: "正面",
-              type: "bar",
-              stack: "总量",
-              label: {
-                normal: {
-                  show: true
-                }
-              },
-              data: [120, 102, 141, 174, 190, 250, 220]
-            },
-            {
-              name: "负面",
-              type: "bar",
-              stack: "总量",
-              label: {
-                normal: {
-                  show: true,
-                  position: "left"
-                }
-              },
-              data: [-20, -32, -21, -34, -90, -130, -110]
+              data: mdata
             }
           ]
         }

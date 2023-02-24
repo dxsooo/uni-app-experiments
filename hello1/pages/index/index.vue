@@ -15,6 +15,8 @@ import {LabelLayout,UniversalTransition} from 'echarts/features';
 // 引入 Canvas 渲染器，注意引入 CanvasRenderer 是必须的一步
 import {CanvasRenderer} from 'echarts/renderers';
 
+import {mdata} from './mockdata.js'
+
 // 注册必须的组件
 echarts.use([
     LegendComponent,
@@ -43,7 +45,7 @@ export default {
                     confine: true
                 },
                 legend: {
-                    data: ['热度', '正面', '负面']
+                    data: ['热度']
                 },
                 grid: {
                     left: 20,
@@ -80,40 +82,17 @@ export default {
                         }
                     }
                 ],
+				// label: {
+				// 	normal: {
+				// 		show: true,
+				// 		position: 'inside'
+				// 	}
+				// },
                 series: [
                     {
                         name: '热度',
                         type: 'bar',
-                        label: {
-                            normal: {
-                                show: true,
-                                position: 'inside'
-                            }
-                        },
-                        data: [300, 270, 340, 344, 300, 320, 310],
-                    },
-                    {
-                        name: '正面',
-                        type: 'bar',
-                        stack: '总量',
-                        label: {
-                            normal: {
-                                show: true
-                            }
-                        },
-                        data: [120, 102, 141, 174, 190, 250, 220]
-                    },
-                    {
-                        name: '负面',
-                        type: 'bar',
-                        stack: '总量',
-                        label: {
-                            normal: {
-                                show: true,
-                                position: 'left'
-                            }
-                        },
-                        data: [-20, -32, -21, -34, -90, -130, -110]
+                        data: mdata,
                     }
                 ]
             },
