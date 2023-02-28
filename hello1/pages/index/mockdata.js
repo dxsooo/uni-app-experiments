@@ -34,18 +34,22 @@ export const mlinks = [
         {
           source: '孙悟空',
           target: '龟仙人',
+		  value:100,
         },
 		{
 		  source: '孙悟空',
 		  target: '无限',
+		  value:250,
 		},
 		{
 		  source: '无限',
 		  target: '龟仙人',
+		  value:100,
 		},
         {
           source: '孙悟空',
-          target: '比达'
+          target: '比达',
+		  value:200,
         },
       ]
 	  

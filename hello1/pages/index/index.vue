@@ -46,12 +46,12 @@ export default {
 				      type: 'graph',
 				      layout: 'force',
 					  force: {
-						// edgeLength:[100,200],
-						edgeLength:100,
+						edgeLength:[100,200],
+						// edgeLength:100,
 						repulsion:100,
 					  },
 					  cursor:'pointer',
-				      symbolSize: 60,
+				      symbolSize: 50,
 					  draggable: true,
 				      roam: true,
 				      label: {
