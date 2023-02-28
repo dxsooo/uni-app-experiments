@@ -46,11 +46,12 @@ export default {
 				      type: 'graph',
 				      layout: 'force',
 					  force: {
-						edgeLength:[10,50],
-						repulsion:500,
+						// edgeLength:[100,200],
+						edgeLength:100,
+						repulsion:100,
 					  },
 					  cursor:'pointer',
-				      symbolSize: 30,
+				      symbolSize: 60,
 					  draggable: true,
 				      roam: true,
 				      label: {
@@ -63,6 +64,7 @@ export default {
 				      // },
 				      data: mdata,
 					  links: mlinks,
+					  categories:[{name:0},{name:1}]
 					  },
 					  ]
             

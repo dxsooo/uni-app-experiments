@@ -1,16 +1,20 @@
 export const mdata = [
         {
-          name: 'Node 1',
-		  isRoot: true,
+          name: '孙悟空',
+		  category: 0,
+		  symbolSize: 100,
         },
         {
-          name: 'Node 2',
+          name: '龟仙人',
+		  category: 1,
         },
         {
-          name: 'Node 3',
+          name: '无限',
+		  category: 1,
         },
         {
-          name: 'Node 4',
+          name: '比达',
+		  category: 1,
         }
       ]
 	  
@@ -28,24 +32,20 @@ export const mlinks = [
         //   }
         // },
         {
-          source: 'Node 2',
-          target: 'Node 1',
+          source: '孙悟空',
+          target: '龟仙人',
         },
+		{
+		  source: '孙悟空',
+		  target: '无限',
+		},
+		{
+		  source: '无限',
+		  target: '龟仙人',
+		},
         {
-          source: 'Node 1',
-          target: 'Node 3'
+          source: '孙悟空',
+          target: '比达'
         },
-        {
-          source: 'Node 2',
-          target: 'Node 3'
-        },
-        {
-          source: 'Node 2',
-          target: 'Node 4'
-        },
-        {
-          source: 'Node 1',
-          target: 'Node 4'
-        }
       ]
 	  
