@@ -14,6 +14,16 @@
 				</view>	
 				<view class="title"><text class="uni-form-item__title">参与人</text></view>
 				<view class="uni-input-wrapper">
+				    <input class="uni-input" placeholder="自动获得焦点" v-model="newParticipate" />
+					<button @click="addPerson2">添加</button>
+				</view>
+				<view class="tag-view" v-for="(item,index) in participates">
+					<uni-tag :text="item" type="primary" @click="delPerson(index)" />
+				</view>
+				<!-- <view class="tag-view">
+					<uni-tag :circle="true" text="+" type="primary" @click="addPerson" />
+				</view> -->
+				<view class="uni-input-wrapper">
 				    <input class="uni-input" placeholder="自动获得焦点" />
 				</view>
             </view>
@@ -129,6 +139,8 @@
                 platform: '',
                 isNvue: false,
 				date: currentDate,
+				participates:['person A','person B'],
+				newParticipate:''
             }
         },
 		computed: {
@@ -140,12 +152,25 @@
 		        }
 		    },
         methods: {
+			delPerson: function(index){
+				delete this.participates[index]
+			},
+			addPerson: function(){
+				this.participates.push('person C')
+			},
+			addPerson2: function(){
+				this.participates.push(this.newParticipate)
+				this.newParticipate = ''
+			},
 			bindDateChange: function(e) {
 			            this.date = e.detail.value
 			        },
             onKeyInput: function(event) {
                 this.inputValue = event.detail.value
             },
+			// inputNew: function(event) {
+			//     this.newParticipate = event.detail.value
+			// },
             replaceInput: function(event) {
                 var value = event.detail.value;
                 if (value === '11') {
