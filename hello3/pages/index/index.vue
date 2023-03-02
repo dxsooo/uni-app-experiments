@@ -23,8 +23,8 @@
 				<!-- <view class="tag-view">
 					<uni-tag :circle="true" text="+" type="primary" @click="addPerson" />
 				</view> -->
-				<view class="uni-input-wrapper">
-				    <input class="uni-input" placeholder="自动获得焦点" />
+				<view>
+				    <button @click="saveToDB">保存到数据库</button>
 				</view>
             </view>
             <!-- #ifdef APP-PLUS -->
@@ -161,6 +161,9 @@
 			addPerson2: function(){
 				this.participates.push(this.newParticipate)
 				this.newParticipate = ''
+			},
+			saveToDB: function(){
+				console.log("save")
 			},
 			bindDateChange: function(e) {
 			            this.date = e.detail.value
