@@ -26,6 +26,9 @@
 				<view>
 				    <button @click="saveToDB">保存到数据库</button>
 				</view>
+				<view>
+				    <button @click="readDB">读取数据库</button>
+				</view>
             </view>
             <!-- #ifdef APP-PLUS -->
             <view v-if="platform==='ios'&&!isNvue" class="uni-form-item uni-column">
@@ -127,6 +130,7 @@
 			const currentDate = this.getDate({
 			            format: true
 			        })
+			this.openDB()
             return {
                 title: 'input',
                 focus: false,
@@ -152,6 +156,43 @@
 		        }
 		    },
         methods: {
+			openDB: function(){
+				plus.sqlite.openDatabase({
+				            name: 'demo',
+				            path: '_doc/demo.db',
+				            success: () => {
+				                resolve('ok.')
+				            },
+				            fail: () => {
+				                reject('fail.')
+				            }
+				        })
+			},
+			createTables:function(){
+				console.log("create")
+				plus.sqlite.executeSql({
+				            name: 'demo',
+				            sql: `
+				            create table if not exists links (
+				                "id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+				                "name_1" VARCHAR(32) NOT NULL,
+								"name_2" VARCHAR(32) NOT NULL
+				            )
+				            `,
+							// success(e) {
+							//     console.log(e)
+							// },
+							// fail(e) {
+							//     console.log(e)
+							// },
+				            // success: () => {
+				            //     resolve('ok.')
+				            // },
+				            // fail: () => {
+				            //     reject('fail.')
+				            // }
+				        })
+			},
 			delPerson: function(index){
 				delete this.participates[index]
 			},
@@ -163,7 +204,41 @@
 				this.newParticipate = ''
 			},
 			saveToDB: function(){
+				this.createTables()
 				console.log("save")
+				const isOpen = plus.sqlite.isOpenDatabase({
+				    name: 'demo',
+				    path: '_doc/demo.db'
+				})
+				console.log(isOpen)
+				plus.sqlite.executeSql({
+				            name: 'demo',
+				            sql: `insert into links (name_1,name_2) values ('p1','p2')`,
+							success(e) {
+							    console.log(e)
+							},
+							fail(e) {
+							    console.log(e)
+							},
+				})
+			},
+			readDB: function(){
+				console.log("read")
+				const isOpen = plus.sqlite.isOpenDatabase({
+				    name: 'demo',
+				    path: '_doc/demo.db'
+				})
+				console.log(isOpen)
+				plus.sqlite.selectSql({
+				            name: 'demo',
+				            sql: `select * from links`,
+							success(e) {
+							    console.log(e)
+							},
+							fail(e) {
+							    console.log(e)
+							},
+				})
 			},
 			bindDateChange: function(e) {
 			            this.date = e.detail.value
